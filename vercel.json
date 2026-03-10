@@ -12,8 +12,8 @@
       "dest": "/quizzindex.html"
     },
     {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "src": "/index.html",
+      "dest": "/quizzindex.html"
     }
   ],
   "headers": [
@@ -23,8 +23,18 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=3600, must-revalidate"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
         }
       ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/quizzindex.html"
     }
   ]
 }
