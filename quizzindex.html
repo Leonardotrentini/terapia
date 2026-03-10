@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#06020f">
+<meta name="description" content="Test Energético Gratuito — Descubre tu Bloqueo en 2 minutos">
+<title>Test Energético — Descubre tu Bloqueo</title>
+
+<!-- Preconnect for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+<link rel="dns-prefetch" href="https://www.facebook.com">
+
+<!-- Google Fonts with font-display swap for faster rendering -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel - Deferred -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;t.defer=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '34732934182958473');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=34732934182958473&ev=PageView&noscript=1"/></noscript>
+
+<style>
+:root {
+  --void: #06020f;
+  --deep: #0d0520;
+  --purple-dark: #1a0a35;
+  --purple-mid: #3d1478;
+  --purple: #7b2fbe;
+  --violet: #9d4edd;
+  --electric: #c77dff;
+  --magenta: #e040fb;
+  --gold: #ffd700;
+  --gold-dim: #c8962e;
+  --rose: #ff6b9d;
+  --white: #faf5ff;
+  --cream: #f0e6ff;
+  --red-cta: #c1121f;
+  --red-hot: #e63946;
+  --chakra-red: #ff4444;
+  --chakra-orange: #ff8c00;
+  --chakra-yellow: #ffd700;
+  --chakra-green: #44ff88;
+  --chakra-blue: #4488ff;
+  --chakra-indigo: #6644ff;
+  --chakra-violet: #cc44ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  background: var(--void);
+  color: var(--white);
+  font-family: 'Crimson Pro', Georgia, serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── STARFIELD ─────────────────────────────── */
+#stars {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(ellipse at 50% 0%, #1a0a35 0%, #06020f 70%);
+  will-change: transform;
+  transform: translateZ(0);
+}
+.star {
+  position: absolute; border-radius: 50%;
+  background: white; animation: twinkle var(--d) ease-in-out infinite;
+  will-change: opacity, transform;
+  transform: translateZ(0);
+}
+@keyframes twinkle {
+  0%,100%{opacity:var(--min);transform:scale(1) translateZ(0)}
+  50%{opacity:1;transform:scale(1.4) translateZ(0)}
+}
+
+/* ── CONTAINER ─────────────────────────────── */
+#app {
+  position: relative; z-index: 1;
+  max-width: 480px; margin: 0 auto;
+  min-height: 100vh; padding: 0 0 40px;
+  content-visibility: auto;
+  contain-intrinsic-size: 100vh;
+}
+
+/* ── SCREENS ─────────────────────────────────*/
+.screen {
+  display: none; opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+  padding: 24px 20px;
+  min-height: 100vh;
+  will-change: opacity;
+  transform: translateZ(0);
+}
+.screen.active { 
+  display: flex; 
+  flex-direction: column;
+  content-visibility: auto;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* ── PROGRESS ────────────────────────────────*/
+.progress-wrap {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 28px; padding-top: 8px;
+}
+.progress-bar {
+  flex: 1; height: 4px;
+  background: rgba(157,78,221,0.2);
+  border-radius: 2px; overflow: hidden;
+}
+.progress-fill {
+  height: 100%; border-radius: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--electric));
+  transition: width 0.6s cubic-bezier(.4,0,.2,1);
+}
+.progress-label {
+  font-family: 'Cinzel', serif;
+  font-size: 11px; color: var(--electric); letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* ── LOGO ────────────────────────────────────*/
+.logo {
+  text-align: center; margin-bottom: 32px;
+}
+.logo-symbol {
+  font-size: 32px; display: block;
+  filter: drop-shadow(0 0 12px var(--electric));
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+@keyframes pulse-glow {
+  0%,100%{filter:drop-shadow(0 0 8px var(--electric))}
+  50%{filter:drop-shadow(0 0 20px var(--magenta)) drop-shadow(0 0 40px var(--electric))}
+}
+.logo-text {
+  font-family: 'Cinzel', serif; font-size: 11px;
+  letter-spacing: 3px; color: var(--electric);
+  text-transform: uppercase; margin-top: 6px;
+}
+
+/* ── QUESTION HEADER ─────────────────────────*/
+.q-label {
+  font-family: 'Cinzel', serif; font-size: 11px;
+  letter-spacing: 3px; color: var(--violet);
+  text-transform: uppercase; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.q-label::before, .q-label::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--purple));
+}
+.q-label::after { background: linear-gradient(90deg, var(--purple), transparent); }
+
+.q-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(18px, 5vw, 24px);
+  font-weight: 700; line-height: 1.35;
+  color: var(--white); text-align: center;
+  margin-bottom: 8px;
+  text-shadow: 0 0 30px rgba(199,125,255,0.4);
+}
+.q-sub {
+  font-size: 15px; color: var(--electric);
+  text-align: center; margin-bottom: 28px;
+  font-style: italic; opacity: 0.85;
+}
+
+/* ── OPTIONS ─────────────────────────────────*/
+.options { display: flex; flex-direction: column; gap: 12px; flex: 1; }
+
+.opt {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 18px;
+  background: rgba(61,20,120,0.25);
+  border: 1px solid rgba(157,78,221,0.3);
+  border-radius: 14px; cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative; overflow: hidden;
+  will-change: transform, border-color;
+  transform: translateZ(0);
+  -webkit-tap-highlight-color: rgba(157,78,221,0.2);
+}
+.opt::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(157,78,221,0.15), rgba(232,64,251,0.1));
+  opacity: 0; transition: opacity 0.25s;
+}
+.opt:hover::before, .opt:active::before { opacity: 1; }
+.opt:hover { border-color: var(--violet); transform: translateX(4px); }
+.opt:active { transform: scale(0.98); }
+.opt.selected {
+  border-color: var(--electric);
+  background: rgba(157,78,221,0.4);
+  box-shadow: 0 0 20px rgba(157,78,221,0.3), inset 0 0 20px rgba(199,125,255,0.1);
+}
+.opt.selected::before { opacity: 1; }
+
+.opt-icon {
+  font-size: 24px; flex-shrink: 0;
+  filter: drop-shadow(0 0 6px currentColor);
+}
+.opt-text {
+  font-size: 15px; line-height: 1.4; color: var(--cream);
+  flex: 1;
+}
+.opt-check {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 2px solid rgba(157,78,221,0.5);
+  flex-shrink: 0; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.opt.selected .opt-check {
+  background: var(--electric); border-color: var(--electric);
+  box-shadow: 0 0 10px var(--electric);
+}
+.opt.selected .opt-check::after { content: '✓'; font-size: 11px; color: var(--void); }
+
+/* ── GRID OPTIONS ────────────────────────────*/
+.options-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; flex: 1;
+}
+.opt-card {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px; padding: 20px 12px;
+  background: rgba(61,20,120,0.25);
+  border: 1px solid rgba(157,78,221,0.3);
+  border-radius: 16px; cursor: pointer;
+  transition: all 0.25s ease; text-align: center;
+  min-height: 100px;
+}
+.opt-card:hover { border-color: var(--violet); transform: scale(1.03); }
+.opt-card.selected {
+  border-color: var(--electric);
+  background: rgba(157,78,221,0.4);
+  box-shadow: 0 0 20px rgba(157,78,221,0.3);
+}
+.opt-card-icon { font-size: 28px; }
+.opt-card-text { font-size: 13px; color: var(--cream); line-height: 1.3; }
+
+/* ── SIGN GRID ───────────────────────────────*/
+.signs-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 10px; flex: 1;
+}
+.sign-card {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 6px; padding: 12px 8px;
+  background: rgba(61,20,120,0.25);
+  border: 1px solid rgba(157,78,221,0.25);
+  border-radius: 12px; cursor: pointer;
+  transition: all 0.2s; text-align: center;
+}
+.sign-card:hover { border-color: var(--violet); transform: scale(1.05); }
+.sign-card.selected {
+  border-color: var(--gold);
+  background: rgba(200,150,46,0.2);
+  box-shadow: 0 0 15px rgba(255,215,0,0.3);
+}
+.sign-symbol { font-size: 22px; }
+.sign-name { font-size: 10px; font-family: 'Cinzel', serif; color: var(--cream); letter-spacing: 0.5px; }
+
+/* ── INPUT ───────────────────────────────────*/
+.input-field {
+  width: 100%; padding: 16px 20px;
+  background: rgba(61,20,120,0.3);
+  border: 1px solid rgba(157,78,221,0.4);
+  border-radius: 14px; color: var(--white);
+  font-family: 'Crimson Pro', serif; font-size: 18px;
+  outline: none; transition: border-color 0.2s;
+  margin-bottom: 12px;
+  -webkit-appearance: none;
+  appearance: none;
+  touch-action: manipulation;
+}
+.input-field::placeholder { color: rgba(199,125,255,0.4); }
+.input-field:focus { border-color: var(--electric); box-shadow: 0 0 15px rgba(157,78,221,0.2); }
+/* Prevent zoom on iOS input focus */
+@media screen and (max-width: 768px) {
+  .input-field { font-size: 16px; }
+}
+
+/* ── BUTTONS ─────────────────────────────────*/
+.btn-primary {
+  display: block; width: 100%;
+  padding: 18px 24px; margin-top: 20px;
+  background: linear-gradient(135deg, var(--red-cta), var(--red-hot));
+  border: none; border-radius: 50px; cursor: pointer;
+  font-family: 'Cinzel', serif; font-size: 16px;
+  font-weight: 700; color: white; letter-spacing: 1px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 20px rgba(198,18,31,0.5), 0 0 40px rgba(198,18,31,0.2);
+  transition: all 0.2s; position: relative; overflow: hidden;
+  will-change: transform, box-shadow;
+  transform: translateZ(0);
+  -webkit-tap-highlight-color: rgba(198,18,31,0.3);
+  touch-action: manipulation;
+}
+.btn-primary::before {
+  content: ''; position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transition: left 0.4s;
+}
+.btn-primary:hover::before { left: 100%; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(198,18,31,0.6); }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-secondary {
+  display: block; width: 100%;
+  padding: 16px 24px; margin-top: 12px;
+  background: transparent;
+  border: 1px solid rgba(157,78,221,0.4);
+  border-radius: 50px; cursor: pointer;
+  font-family: 'Cinzel', serif; font-size: 13px;
+  color: var(--electric); letter-spacing: 1px;
+  transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--electric); background: rgba(157,78,221,0.1); }
+
+/* ── WELCOME SCREEN ──────────────────────────*/
+.welcome-hero {
+  text-align: center; padding: 20px 0;
+}
+.welcome-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px; margin-bottom: 24px;
+  background: rgba(61,20,120,0.5);
+  border: 1px solid rgba(157,78,221,0.4);
+  border-radius: 50px;
+  font-family: 'Cinzel', serif; font-size: 11px;
+  color: var(--electric); letter-spacing: 2px;
+}
+.welcome-badge::before { content: '✦'; color: var(--gold); }
+.welcome-badge::after { content: '✦'; color: var(--gold); }
+
+.welcome-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(22px, 6vw, 30px);
+  font-weight: 900; line-height: 1.2;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--white) 0%, var(--electric) 50%, var(--magenta) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.welcome-sub {
+  font-size: 16px; line-height: 1.7;
+  color: rgba(240,230,255,0.85);
+  margin-bottom: 28px; font-style: italic;
+}
+.welcome-stats {
+  display: flex; justify-content: center; gap: 0;
+  margin-bottom: 28px;
+}
+.stat-item {
+  padding: 14px 20px; text-align: center;
+  border: 1px solid rgba(157,78,221,0.3);
+  background: rgba(61,20,120,0.2);
+}
+.stat-item:first-child { border-radius: 14px 0 0 14px; border-right: none; }
+.stat-item:last-child { border-radius: 0 14px 14px 0; border-left: none; }
+.stat-num { font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; color: var(--gold); }
+.stat-lbl { font-size: 11px; color: var(--electric); letter-spacing: 1px; }
+
+.welcome-features { margin-bottom: 28px; }
+.feature {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0; border-bottom: 1px solid rgba(157,78,221,0.1);
+}
+.feature:last-child { border-bottom: none; }
+.feature-icon { font-size: 18px; flex-shrink: 0; }
+.feature-text { font-size: 14px; color: var(--cream); }
+
+/* ── ORNAMENT ────────────────────────────────*/
+.ornament {
+  text-align: center; color: var(--gold-dim);
+  font-size: 18px; letter-spacing: 8px; margin: 20px 0;
+  opacity: 0.6;
+}
+
+/* ── LOADING / ANALYSIS ──────────────────────*/
+.analysis-wrap {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; gap: 24px;
+}
+.analysis-orb {
+  width: 140px; height: 140px; border-radius: 50%;
+  position: relative; margin: 0 auto;
+}
+.orb-ring {
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 2px solid transparent;
+  animation: orbit var(--s) linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+.orb-ring:nth-child(1) { border-top-color: var(--electric); --s: 2s; }
+.orb-ring:nth-child(2) { inset: 12px; border-right-color: var(--magenta); --s: 3s; animation-direction: reverse; }
+.orb-ring:nth-child(3) { inset: 24px; border-bottom-color: var(--gold); --s: 4s; }
+.orb-core {
+  position: absolute; inset: 36px; border-radius: 50%;
+  background: radial-gradient(circle, var(--magenta), var(--purple));
+  box-shadow: 0 0 30px var(--magenta), 0 0 60px var(--purple);
+  animation: pulse-core 2s ease-in-out infinite;
+  will-change: transform, box-shadow;
+  transform: translateZ(0);
+}
+@keyframes orbit { to { transform: rotate(360deg); } }
+@keyframes pulse-core {
+  0%,100%{transform:scale(1);box-shadow:0 0 20px var(--magenta)}
+  50%{transform:scale(1.15);box-shadow:0 0 40px var(--magenta),0 0 80px var(--purple)}
+}
+
+.analysis-step {
+  font-family: 'Cinzel', serif; font-size: 13px;
+  color: var(--electric); letter-spacing: 1px;
+  min-height: 20px; transition: opacity 0.3s;
+}
+.analysis-bar-wrap {
+  width: 100%; background: rgba(157,78,221,0.15);
+  border-radius: 4px; height: 6px; overflow: hidden;
+}
+.analysis-bar {
+  height: 100%; border-radius: 4px;
+  background: linear-gradient(90deg, var(--purple), var(--electric), var(--magenta));
+  width: 0%; transition: width 0.4s ease;
+}
+.analysis-pct {
+  font-family: 'Cinzel', serif; font-size: 28px;
+  font-weight: 700; color: var(--gold);
+}
+
+/* ── RESULT SCREEN ───────────────────────────*/
+.result-header {
+  text-align: center; margin-bottom: 24px;
+}
+.result-name-badge {
+  display: inline-block; padding: 6px 20px;
+  background: linear-gradient(135deg, rgba(157,78,221,0.3), rgba(232,64,251,0.2));
+  border: 1px solid rgba(157,78,221,0.5);
+  border-radius: 50px; margin-bottom: 14px;
+  font-family: 'Cinzel', serif; font-size: 13px; color: var(--electric);
+}
+.result-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(20px, 5vw, 26px); font-weight: 900;
+  line-height: 1.3; color: var(--white); margin-bottom: 8px;
+}
+.result-sub { font-size: 15px; color: var(--electric); font-style: italic; }
+
+/* Body map */
+.body-map {
+  position: relative; width: 200px; margin: 0 auto 24px;
+}
+.body-svg { width: 100%; opacity: 0.6; }
+.chakra-point {
+  position: absolute; transform: translate(-50%,-50%);
+  animation: chakra-pulse 2s ease-in-out infinite;
+}
+@keyframes chakra-pulse {
+  0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.8}
+  50%{transform:translate(-50%,-50%) scale(1.4);opacity:1}
+}
+.chakra-dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  box-shadow: 0 0 12px currentColor, 0 0 24px currentColor;
+}
+.chakra-dot.critical { background: var(--chakra-red); color: var(--chakra-red); }
+.chakra-dot.moderate { background: var(--chakra-yellow); color: var(--chakra-yellow); }
+.chakra-dot.blocked { background: var(--chakra-orange); color: var(--chakra-orange); }
+
+/* Blockage cards */
+.blockage-card {
+  padding: 16px; margin-bottom: 12px;
+  background: rgba(61,20,120,0.25);
+  border: 1px solid rgba(157,78,221,0.3);
+  border-radius: 14px;
+}
+.blockage-header {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 8px;
+}
+.blockage-icon { font-size: 20px; }
+.blockage-name { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700; }
+.blockage-level {
+  margin-left: auto; padding: 3px 10px; border-radius: 20px;
+  font-size: 11px; font-family: 'Cinzel', serif; letter-spacing: 1px;
+}
+.blockage-level.critical { background: rgba(255,68,68,0.2); color: var(--chakra-red); border: 1px solid rgba(255,68,68,0.4); }
+.blockage-level.moderate { background: rgba(255,215,0,0.15); color: var(--gold); border: 1px solid rgba(255,215,0,0.3); }
+.blockage-text { font-size: 13px; color: rgba(240,230,255,0.8); line-height: 1.5; }
+
+/* Meter */
+.meter-wrap {
+  background: rgba(61,20,120,0.2); border: 1px solid rgba(255,68,68,0.3);
+  border-radius: 14px; padding: 16px; margin-bottom: 20px;
+}
+.meter-label {
+  font-family: 'Cinzel', serif; font-size: 11px;
+  letter-spacing: 2px; color: var(--chakra-red); margin-bottom: 10px;
+}
+.meter-bar-wrap {
+  height: 10px; background: rgba(255,68,68,0.15);
+  border-radius: 5px; overflow: hidden; margin-bottom: 8px;
+}
+.meter-bar {
+  height: 100%; border-radius: 5px; width: 0%;
+  background: linear-gradient(90deg, var(--chakra-orange), var(--chakra-red));
+  transition: width 1.5s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 0 10px var(--chakra-red);
+}
+.meter-value {
+  text-align: right; font-family: 'Cinzel', serif;
+  font-size: 13px; color: var(--chakra-red);
+}
+
+/* Sign message */
+.sign-message {
+  background: rgba(200,150,46,0.1); border: 1px solid rgba(255,215,0,0.3);
+  border-radius: 14px; padding: 16px; margin-bottom: 24px;
+}
+.sign-message-header {
+  font-family: 'Cinzel', serif; font-size: 13px;
+  color: var(--gold); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.sign-message-text { font-size: 14px; line-height: 1.6; color: var(--cream); font-style: italic; }
+
+/* ── SOLUTIONS ───────────────────────────────*/
+.solution-card {
+  background: rgba(61,20,120,0.25);
+  border: 1px solid rgba(157,78,221,0.3);
+  border-radius: 16px; padding: 20px; margin-bottom: 14px;
+  position: relative; overflow: hidden;
+}
+.solution-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--electric), transparent);
+}
+.solution-icon { font-size: 32px; margin-bottom: 10px; display: block; }
+.solution-title { font-family: 'Cinzel', serif; font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--electric); }
+.solution-sub { font-size: 13px; color: rgba(240,230,255,0.7); margin-bottom: 12px; }
+.solution-preview {
+  background: rgba(0,0,0,0.3); border-radius: 8px; padding: 12px;
+  font-size: 13px; position: relative; overflow: hidden;
+}
+.solution-preview-blur {
+  filter: blur(4px); user-select: none;
+  color: rgba(240,230,255,0.6);
+}
+.solution-lock {
+  position: absolute; inset: 0; display: flex;
+  align-items: center; justify-content: center;
+  background: rgba(6,2,15,0.6);
+  font-size: 13px; color: var(--electric);
+  font-family: 'Cinzel', serif; gap: 6px;
+}
+
+/* ── TIMELINE ────────────────────────────────*/
+.timeline { margin-bottom: 24px; }
+.timeline-item {
+  display: flex; gap: 16px; margin-bottom: 16px;
+  opacity: 0; transform: translateX(-20px);
+  animation: slide-in 0.4s ease forwards;
+}
+.timeline-item:nth-child(1){animation-delay:0.1s}
+.timeline-item:nth-child(2){animation-delay:0.2s}
+.timeline-item:nth-child(3){animation-delay:0.3s}
+.timeline-item:nth-child(4){animation-delay:0.4s}
+.timeline-item:nth-child(5){animation-delay:0.5s}
+@keyframes slide-in { to { opacity:1; transform:translateX(0); } }
+
+.timeline-dot-wrap {
+  display: flex; flex-direction: column; align-items: center; flex-shrink: 0;
+}
+.timeline-dot {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+  background: rgba(61,20,120,0.5);
+  border: 1px solid var(--violet);
+}
+.timeline-line {
+  width: 1px; flex: 1; min-height: 12px;
+  background: rgba(157,78,221,0.3);
+  margin-top: 4px;
+}
+.timeline-content { flex: 1; padding-bottom: 4px; }
+.timeline-day { font-family: 'Cinzel', serif; font-size: 12px; color: var(--gold); letter-spacing: 1px; }
+.timeline-text { font-size: 14px; color: var(--cream); margin-top: 2px; line-height: 1.4; }
+
+/* ── TESTIMONIALS ────────────────────────────*/
+.testimonial {
+  background: rgba(61,20,120,0.2);
+  border: 1px solid rgba(157,78,221,0.25);
+  border-radius: 14px; padding: 16px; margin-bottom: 12px;
+}
+.testimonial-header {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+}
+.testimonial-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple), var(--magenta));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+  box-shadow: 0 0 12px rgba(157,78,221,0.4);
+}
+.testimonial-info { flex: 1; }
+.testimonial-name { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; color: var(--white); }
+.testimonial-meta { font-size: 11px; color: var(--violet); margin-top: 2px; }
+.testimonial-stars { color: var(--gold); font-size: 13px; letter-spacing: 2px; }
+.testimonial-text { font-size: 14px; line-height: 1.6; color: var(--cream); font-style: italic; }
+.testimonial-highlight {
+  margin-top: 10px; padding: 8px 12px;
+  background: rgba(61,20,120,0.4); border-radius: 8px;
+  font-size: 13px; color: var(--electric);
+  border-left: 2px solid var(--electric);
+}
+
+/* ── OFFER ───────────────────────────────────*/
+.offer-box {
+  background: linear-gradient(135deg, rgba(61,20,120,0.4), rgba(26,10,53,0.6));
+  border: 1px solid rgba(157,78,221,0.4);
+  border-radius: 20px; padding: 24px; margin-bottom: 20px;
+  position: relative; overflow: hidden;
+}
+.offer-box::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--electric), var(--magenta), var(--gold));
+}
+.offer-title {
+  font-family: 'Cinzel', serif; font-size: 18px; font-weight: 900;
+  text-align: center; margin-bottom: 6px; color: var(--white);
+}
+.offer-sub {
+  text-align: center; font-size: 14px; color: var(--electric);
+  font-style: italic; margin-bottom: 20px;
+}
+.offer-items { margin-bottom: 20px; }
+.offer-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 0; border-bottom: 1px solid rgba(157,78,221,0.1);
+}
+.offer-item:last-child { border-bottom: none; }
+.offer-item-check { color: var(--chakra-green); font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.offer-item-text { font-size: 14px; color: var(--cream); line-height: 1.4; }
+.offer-item-highlight { color: var(--electric); font-style: italic; font-size: 13px; }
+
+.price-wrap { text-align: center; margin-bottom: 20px; }
+.price-old { font-size: 18px; color: rgba(240,230,255,0.4); text-decoration: line-through; margin-bottom: 4px; }
+.price-new { font-family: 'Cinzel', serif; font-size: 52px; font-weight: 900; color: var(--gold); line-height: 1; }
+.price-currency { font-size: 22px; vertical-align: super; }
+.price-period { font-size: 14px; color: var(--electric); margin-top: 4px; }
+
+.urgency-bar {
+  background: rgba(255,68,68,0.1); border: 1px solid rgba(255,68,68,0.3);
+  border-radius: 10px; padding: 12px 16px; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.urgency-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--chakra-red); flex-shrink: 0; animation: blink 1s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.urgency-text { font-size: 13px; color: rgba(240,230,255,0.85); }
+.urgency-count { font-weight: 700; color: var(--chakra-red); }
+
+.guarantee {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px; background: rgba(68,255,136,0.05);
+  border: 1px solid rgba(68,255,136,0.2); border-radius: 12px; margin-top: 14px;
+}
+.guarantee-icon { font-size: 28px; flex-shrink: 0; }
+.guarantee-text { font-size: 13px; color: var(--cream); line-height: 1.5; }
+.guarantee-title { font-family: 'Cinzel', serif; font-size: 13px; color: var(--chakra-green); margin-bottom: 3px; }
+
+.secure-badges {
+  display: flex; justify-content: center; align-items: center; gap: 16px;
+  margin-top: 16px; opacity: 0.6;
+}
+.badge { font-size: 11px; color: var(--electric); display: flex; align-items: center; gap: 4px; }
+
+/* ── DIVIDER ─────────────────────────────────*/
+.section-divider {
+  display: flex; align-items: center; gap: 12px;
+  margin: 24px 0;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(157,78,221,0.4), transparent);
+}
+.section-divider span {
+  font-family: 'Cinzel', serif; font-size: 11px;
+  color: var(--violet); letter-spacing: 2px; white-space: nowrap;
+  text-transform: uppercase;
+}
+
+/* ── MOBILE OPTIMIZATIONS ─────────────────────*/
+@media screen and (max-width: 480px) {
+  #app { padding: 0 0 20px; }
+  .screen { padding: 20px 16px; }
+  .q-title { font-size: 20px !important; }
+  .opt { padding: 14px 16px; gap: 12px; }
+  .opt-text { font-size: 14px; }
+  .btn-primary { padding: 16px 20px; font-size: 15px; }
+  .welcome-title { font-size: 24px !important; }
+  .welcome-sub { font-size: 15px; }
+  .price-new { font-size: 42px; }
+  .solution-card { padding: 16px; }
+  .testimonial { padding: 14px; }
+  .offer-box { padding: 20px; }
+  .signs-grid { gap: 8px; }
+  .sign-card { padding: 10px 6px; }
+  .options-grid { gap: 10px; }
+  .opt-card { padding: 16px 10px; min-height: 90px; }
+}
+
+/* ── PERFORMANCE OPTIMIZATIONS ─────────────────*/
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── TOUCH OPTIMIZATIONS ──────────────────────*/
+@media (hover: none) and (pointer: coarse) {
+  .opt:hover { transform: none; }
+  .opt-card:hover { transform: none; }
+  .sign-card:hover { transform: none; }
+  .btn-primary:hover { transform: none; }
+  .opt:active, .opt-card:active, .sign-card:active {
+    transform: scale(0.97);
+  }
+  .btn-primary:active { transform: scale(0.98); }
+}
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+
+<div id="app">
+
+<!-- ════════════════════════════════════════════
+     SCREEN 0 — WELCOME
+════════════════════════════════════════════ -->
+<div class="screen active" id="s0">
+  <div class="logo">
+    <span class="logo-symbol">✦</span>
+    <div class="logo-text">Medicina Energética Ancestral</div>
+  </div>
+
+  <div class="welcome-hero">
+    <div class="welcome-badge">Test Energético Gratuito</div>
+    
+    <h1 class="welcome-title">
+      ¿Tu cuerpo guarda un secreto que ni tu médico pudo descubrir?
+    </h1>
+    
+    <p class="welcome-sub">
+      Este test analiza tu perfil energético único y revela exactamente qué bloqueo está causando tu agotamiento, insomnio y ese nudo que no se va.
+    </p>
+
+    <div class="welcome-stats">
+      <div class="stat-item">
+        <div class="stat-num">8.247</div>
+        <div class="stat-lbl">Mujeres curadas</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2 min</div>
+        <div class="stat-lbl">Para tu diagnóstico</div>
+      </div>
+    </div>
+
+    <div class="welcome-features">
+      <div class="feature"><span class="feature-icon">🔮</span><span class="feature-text">Diagnóstico energético personalizado por signo</span></div>
+      <div class="feature"><span class="feature-icon">💎</span><span class="feature-text">Protocolo específico de cristales y hierbas para ti</span></div>
+      <div class="feature"><span class="feature-icon">🌙</span><span class="feature-text">Tu próxima ventana lunar de sanación</span></div>
+      <div class="feature"><span class="feature-icon">✦</span><span class="feature-text">100% gratuito — resultado en 2 minutos</span></div>
+    </div>
+  </div>
+
+  <button class="btn-primary" onclick="goTo(1)">
+    ✦ Descubrir mi Bloqueo Ahora ✦
+  </button>
+  <p style="text-align:center;font-size:12px;color:rgba(199,125,255,0.5);margin-top:12px;">
+    8.247 mujeres ya descubrieron el suyo hoy
+  </p>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 1 — DOLOR FÍSICO
+════════════════════════════════════════════ -->
+<div class="screen" id="s1">
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" style="width:7%"></div></div>
+    <div class="progress-label">1 / 14</div>
+  </div>
+  
+  <div class="q-label">Pregunta 1</div>
+  <h2 class="q-title">¿Cuál de estas sensaciones reconoces en tu cuerpo <em>ahora mismo</em>?</h2>
+  <p class="q-sub">Elige la que más te identifica</p>
+
+  <div class="options">
+    <div class="opt" onclick="selectOpt(this,'dolor','pecho')">
+      <span class="opt-icon">💔</span>
+      <span class="opt-text">Un nudo apretado en el pecho que no me deja respirar</span>
+      <div class="opt-check"></div>
+    </div>
+    <div class="opt" onclick="selectOpt(this,'dolor','cuello')">
+      <span class="opt-icon">🔥</span>
+      <span class="opt-text">Tensión que quema en el cuello y los hombros</span>
+      <div class="opt-check"></div>
+    </div>
+    <div class="opt" onclick="selectOpt(this,'dolor','estomago')">
+      <span class="opt-icon">🌀</span>
+      <span class="opt-text">Ardor o pesadez constante en el estómago</span>
+      <div class="opt-check"></div>
+    </div>
+    <div class="opt" onclick="selectOpt(this,'dolor','cuerpo')">
+      <span class="opt-icon">⚡</span>
+      <span class="opt-text">Hormigueo o entumecimiento sin razón médica</span>
+      <div class="opt-check"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 2 — MOMENTO DA DOR
+════════════════════════════════════════════ -->
+<div class="screen" id="s2">
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" style="width:14%"></div></div>
+    <div class="progress-label">2 / 14</div>
+  </div>
+
+  <div class="q-label">Pregunta 2</div>
+  <h2 class="q-title">¿Cuándo tu cuerpo te grita que algo está muy mal?</h2>
+  <p class="q-sub">El momento de mayor vulnerabilidad</p>
+
+  <div class="options">
+    <div class="opt" onclick="selectOpt(this,'momento','despertar')">
+      <span class="opt-icon">🌅</span>
+      <span class="opt-text">Al despertar — ya amanezco agotada sin haber hecho nada</span>
+      <div class="opt-check"></div>
+    </div>
+    <div class="opt" onclick="selectOpt(this,'momento','tarde')">
+      <span class="opt-icon">☀️</span>
+      <span class="opt-text">A media tarde — me desplomo sin energía de repente</span>
+      <div class="opt-check"></div>
+    </div>
+    <div class="opt" onclick="selectOpt(this,'momento','dormir')">
+      <span class="opt-icon">🌙</span>
+      <span class="opt-text">Al intentar dormir — mi mente no para de dar vueltas</span>
+      <div class="opt-check"></div>
+    </div>
+    <div class="opt" onclick="selectOpt(this,'momento','3am')">
+      <span class="opt-icon">⭐</span>
+      <span class="opt-text">A las 3 AM — me despierto con pánico en el pecho</span>
+      <div class="opt-check"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 3 — FRASE QUE É ELA
+════════════════════════════════════════════ -->
+<div class="screen" id="s3">
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" style="width:21%"></div></div>
+    <div class="progress-label">3 / 14</div>
+  </div>
+
+  <div class="q-label">Pregunta 3</div>
+  <h2 class="q-title">¿Cuál de estas frases podrías haber dicho <em>tú</em> esta semana?</h2>
+
+  <div class="options">
+    <div class="opt" onclick="selectOpt(this,'frase','peso')">
+      <span class="opt-icon">😔</span>
+      <span class="opt-text">"Siento que llevo el peso del mundo en los hombros y nadie lo ve"</span>
+      <div class="opt-check"></div>
+    </div>
+    <div class="opt" onclick="selectOpt(this,'frase','medico')">
+      <span class="opt-icon">😤</span>
+      <span class="opt-text">"Me hicieron exámenes y dijeron que 'todo está bien' — pero yo sé que NO"</span>
+      <div class="opt-check"></div>
+    </div>
+    <div class="opt" onclick="selectOpt(this,'frase','llorar')">
+      <span class="opt-icon">😞</span>
+      <span class="opt-text">"Estoy tan cansada que ni llorar tengo fuerzas — solo quiero que pare"</span>
+      <div class="opt-check"></div>
+    </div>
+    <div class="opt" onclick="selectOpt(this,'frase','bloqueo')">
+      <span class="opt-icon">🚫</span>
+      <span class="opt-text">"Siento que algo invisible me bloquea justo cuando intento avanzar"</span>
+      <div class="opt-check"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 4 — DURACIÓN
+════════════════════════════════════════════ -->
+<div class="screen" id="s4">
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" style="width:28%"></div></div>
+    <div class="progress-label">4 / 14</div>
+  </div>
+
+  <div class="q-label">Pregunta 4</div>
+  <h2 class="q-title">¿Hace cuánto tiempo cargás con este peso en tu cuerpo?</h2>
+
+  <div class="options">
+    <div class="opt" onclick="selectOpt(this,'duracion','semanas')">
+      <span class="opt-icon">📅</span>
+      <span class="opt-text">Pocas semanas — empeoró de repente</span>
+      <div class="opt-check"></div>
+    </div>
+    <div class="opt" onclick="selectOpt(this,'duracion','meses')">
+      <span class="opt-icon">🗓️</span>
+      <span class="opt-text">Varios meses — ya me acostumbré a vivir así</span>
+      <div class="opt-check"></div>
+    </div>
+    <div class="opt" onclick="selectOpt(this,'duracion','anos')">
+      <span class="opt-icon">⏳</span>
+      <span class="opt-text">Años — ya no recuerdo cómo era antes de sentirme así</span>
+      <div class="opt-check"></div>
+    </div>
+    <div class="opt" onclick="selectOpt(this,'duracion','siempre')">
+      <span class="opt-icon">♾️</span>
+      <span class="opt-text">Toda mi vida — siempre fui así y no sé por qué</span>
+      <div class="opt-check"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 5 — QUE JÁ TENTOU
+════════════════════════════════════════════ -->
+<div class="screen" id="s5">
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" style="width:35%"></div></div>
+    <div class="progress-label">5 / 14</div>
+  </div>
+
+  <div class="q-label">Pregunta 5</div>
+  <h2 class="q-title">¿Qué has intentado para aliviar este malestar?</h2>
+  <p class="q-sub">Sé honesta — esto es solo para ti</p>
+
+  <div class="options">
+    <div class="opt" onclick="selectOpt(this,'intento','medicamentos')">
+      <span class="opt-icon">💊</span>
+      <span class="opt-text">Medicamentos — me adormecen pero la raíz del problema sigue ahí</span>
+      <div class="opt-check"></div>
+    </div>
+    <div class="opt" onclick="selectOpt(this,'intento','terapia')">
+      <span class="opt-icon">🛋️</span>
+      <span class="opt-text">Terapia psicológica — ayudó un poco pero el cuerpo no mejoró</span>
+      <div class="opt-check"></div>
+    </div>
+    <div class="opt" onclick="selectOpt(this,'intento','meditacion')">
+      <span class="opt-icon">🧘</span>
+      <span class="opt-text">Meditación o yoga — no logro mantenerlo con mi ritmo de vida</span>
+      <div class="opt-check"></div>
+    </div>
+    <div class="opt" onclick="selectOpt(this,'intento','nada')">
+      <span class="opt-icon">😔</span>
+      <span class="opt-text">Ya nada — perdí la esperanza de encontrar algo que funcione</span>
+      <div class="opt-check"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 6 — IMPACTO NA VIDA
+════════════════════════════════════════════ -->
+<div class="screen" id="s6">
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" style="width:42%"></div></div>
+    <div class="progress-label">6 / 14</div>
+  </div>
+
+  <div class="q-label">Pregunta 6</div>
+  <h2 class="q-title">¿Cómo está afectando tu vida diaria este bloqueo?</h2>
+
+  <div class="options">
+    <div class="opt" onclick="selectOpt(this,'impacto','trabajo')">
+      <span class="opt-icon">💼</span>
+      <span class="opt-text">Mi trabajo o rendimiento — me cuesta concentrarme y producir</span>
+      <div class="opt-check"></div>
+    </div>
+    <div class="opt" onclick="selectOpt(this,'impacto','familia')">
+      <span class="opt-icon">👨‍👩‍👧</span>
+      <span class="opt-text">Mi familia — no tengo energía para estar presente como quisiera</span>
+      <div class="opt-check"></div>
+    </div>
+    <div class="opt" onclick="selectOpt(this,'impacto','sueno')">
+      <span class="opt-icon">😴</span>
+      <span class="opt-text">Mi sueño y descanso — nunca me siento realmente recuperada</span>
+      <div class="opt-check"></div>
+    </div>
+    <div class="opt" onclick="selectOpt(this,'impacto','todo')">
+      <span class="opt-icon">🌊</span>
+      <span class="opt-text">Todo lo anterior — siento que el bloqueo está arruinando mi vida entera</span>
+      <div class="opt-check"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 7 — SIGNO
+════════════════════════════════════════════ -->
+<div class="screen" id="s7">
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" style="width:50%"></div></div>
+    <div class="progress-label">7 / 14</div>
+  </div>
+
+  <div class="q-label">Tu Perfil Astral</div>
+  <h2 class="q-title">¿Cuál es tu signo zodiacal?</h2>
+  <p class="q-sub">Cada signo tiene vulnerabilidades energéticas específicas</p>
+
+  <div class="signs-grid">
+    <div class="sign-card" onclick="selectSign(this,'aries','♈','Aries')">
+      <span class="sign-symbol">♈</span><span class="sign-name">Aries</span>
+    </div>
+    <div class="sign-card" onclick="selectSign(this,'tauro','♉','Tauro')">
+      <span class="sign-symbol">♉</span><span class="sign-name">Tauro</span>
+    </div>
+    <div class="sign-card" onclick="selectSign(this,'geminis','♊','Géminis')">
+      <span class="sign-symbol">♊</span><span class="sign-name">Géminis</span>
+    </div>
+    <div class="sign-card" onclick="selectSign(this,'cancer','♋','Cáncer')">
+      <span class="sign-symbol">♋</span><span class="sign-name">Cáncer</span>
+    </div>
+    <div class="sign-card" onclick="selectSign(this,'leo','♌','Leo')">
+      <span class="sign-symbol">♌</span><span class="sign-name">Leo</span>
+    </div>
+    <div class="sign-card" onclick="selectSign(this,'virgo','♍','Virgo')">
+      <span class="sign-symbol">♍</span><span class="sign-name">Virgo</span>
+    </div>
+    <div class="sign-card" onclick="selectSign(this,'libra','♎','Libra')">
+      <span class="sign-symbol">♎</span><span class="sign-name">Libra</span>
+    </div>
+    <div class="sign-card" onclick="selectSign(this,'escorpio','♏','Escorpio')">
+      <span class="sign-symbol">♏</span><span class="sign-name">Escorpio</span>
+    </div>
+    <div class="sign-card" onclick="selectSign(this,'sagitario','♐','Sagitario')">
+      <span class="sign-symbol">♐</span><span class="sign-name">Sagitario</span>
+    </div>
+    <div class="sign-card" onclick="selectSign(this,'capricornio','♑','Capricornio')">
+      <span class="sign-symbol">♑</span><span class="sign-name">Capricornio</span>
+    </div>
+    <div class="sign-card" onclick="selectSign(this,'acuario','♒','Acuario')">
+      <span class="sign-symbol">♒</span><span class="sign-name">Acuario</span>
+    </div>
+    <div class="sign-card" onclick="selectSign(this,'piscis','♓','Piscis')">
+      <span class="sign-symbol">♓</span><span class="sign-name">Piscis</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 8 — FECHA NACIMIENTO
+════════════════════════════════════════════ -->
+<div class="screen" id="s8">
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" style="width:57%"></div></div>
+    <div class="progress-label">8 / 14</div>
+  </div>
+
+  <div class="q-label">Tu Número Vibracional</div>
+  <h2 class="q-title">¿Cuál es tu fecha de nacimiento?</h2>
+  <p class="q-sub">Tu número vibracional revela qué chakras están más vulnerables ahora</p>
+
+  <div style="margin: 28px 0;">
+    <input type="date" class="input-field" id="birthdate" 
+           placeholder="DD/MM/AAAA" max="2005-01-01" min="1940-01-01"
+           onchange="calcVibration()" autocomplete="bday">
+    <div id="vibration-preview" style="display:none;text-align:center;margin-top:16px;">
+      <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--violet);letter-spacing:2px;margin-bottom:8px;">TU NÚMERO VIBRACIONAL</div>
+      <div id="vibration-num" style="font-family:'Cinzel',serif;font-size:56px;font-weight:900;color:var(--gold);text-shadow:0 0 20px var(--gold);line-height:1;"></div>
+      <div id="vibration-msg" style="font-size:13px;color:var(--electric);margin-top:8px;font-style:italic;"></div>
+    </div>
+  </div>
+
+  <button class="btn-primary" id="btn-birth" onclick="goTo(9)" style="opacity:0.4;pointer-events:none;">
+    Continuar →
+  </button>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 9 — NOME
+════════════════════════════════════════════ -->
+<div class="screen" id="s9">
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" style="width:64%"></div></div>
+    <div class="progress-label">9 / 14</div>
+  </div>
+
+  <div class="q-label">Personalización Final</div>
+  <h2 class="q-title">¿Cómo te llamas?</h2>
+  <p class="q-sub">Tu nombre tiene una frecuencia vibratoria que influye en tu campo energético</p>
+
+  <div style="margin: 28px 0;">
+    <input type="text" class="input-field" id="username" 
+           placeholder="Tu nombre" 
+           oninput="checkName()">
+    <p style="font-size:12px;color:rgba(199,125,255,0.5);text-align:center;margin-top:8px;">
+      Solo tu nombre — el diagnóstico será personalizado para ti
+    </p>
+  </div>
+
+  <button class="btn-primary" id="btn-name" onclick="goTo(10)" style="opacity:0.4;pointer-events:none;">
+    Ver mi diagnóstico →
+  </button>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 10 — ANÁLISE
+════════════════════════════════════════════ -->
+<div class="screen" id="s10">
+  <div class="analysis-wrap">
+    <div class="analysis-orb">
+      <div class="orb-ring"></div>
+      <div class="orb-ring"></div>
+      <div class="orb-ring"></div>
+      <div class="orb-core"></div>
+    </div>
+
+    <div>
+      <div class="analysis-pct" id="analysis-pct">0%</div>
+      <div class="analysis-step" id="analysis-step">Iniciando análisis energético...</div>
+    </div>
+
+    <div style="width:100%">
+      <div class="analysis-bar-wrap">
+        <div class="analysis-bar" id="analysis-bar"></div>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:rgba(199,125,255,0.5);font-style:italic;">
+      Cruzando tu perfil con nuestra base de datos de 8.247 mujeres...
+    </p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 11 — DIAGNÓSTICO RESULTADO
+════════════════════════════════════════════ -->
+<div class="screen" id="s11">
+  <div class="result-header">
+    <div class="result-name-badge" id="r-name-badge">Tu Diagnóstico</div>
+    <h2 class="result-title" id="r-title">Encontramos 3 bloqueos energéticos activos en tu campo áurico</h2>
+    <p class="result-sub" id="r-sub">Análisis completado • Perfil único detectado</p>
+  </div>
+
+  <div class="meter-wrap">
+    <div class="meter-label">⚠ NIVEL DE BLOQUEO ENERGÉTICO</div>
+    <div class="meter-bar-wrap"><div class="meter-bar" id="meter-bar"></div></div>
+    <div class="meter-value" id="meter-value">Calculando...</div>
+  </div>
+
+  <div id="blockage-cards">
+    <div class="blockage-card">
+      <div class="blockage-header">
+        <span class="blockage-icon">💔</span>
+        <span class="blockage-name" style="color:var(--chakra-red)">Chakra del Corazón</span>
+        <span class="blockage-level critical">CRÍTICO</span>
+      </div>
+      <p class="blockage-text">Acumulación de energía densa causando el nudo en el pecho, agotamiento emocional profundo y dificultad para recibir y fluir.</p>
+    </div>
+    <div class="blockage-card">
+      <div class="blockage-header">
+        <span class="blockage-icon">🗣️</span>
+        <span class="blockage-name" style="color:var(--chakra-orange)">Chakra de la Garganta</span>
+        <span class="blockage-level critical">CRÍTICO</span>
+      </div>
+      <p class="blockage-text">Emociones reprimidas por años se manifiestan como tensión física en cuello, hombros y garganta. Tu cuerpo guarda lo que no dijiste.</p>
+    </div>
+    <div class="blockage-card">
+      <div class="blockage-header">
+        <span class="blockage-icon">☀️</span>
+        <span class="blockage-name" style="color:var(--chakra-yellow)">Plexo Solar</span>
+        <span class="blockage-level moderate">MODERADO</span>
+      </div>
+      <p class="blockage-text">El estrés financiero y emocional está drenando tu energía vital. Tu capacidad de actuar y avanzar está directamente bloqueada.</p>
+    </div>
+  </div>
+
+  <div class="sign-message" id="sign-message">
+    <div class="sign-message-header">
+      <span id="sign-symbol-r">♋</span>
+      <span id="sign-name-r" style="font-family:'Cinzel',serif;">Tu Mensaje Astral</span>
+    </div>
+    <p class="sign-message-text" id="sign-text-r">Como nativa de Cáncer, eres especialmente vulnerable a la acumulación de energía densa en el chakra cardíaco durante este período lunar. Tu sensibilidad te hace absorber las emociones de quienes te rodean.</p>
+  </div>
+
+  <button class="btn-primary" onclick="goTo(12)">
+    Ver mi Protocolo de Sanación →
+  </button>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 12 — SOLUÇÕES / TERAPIAS
+════════════════════════════════════════════ -->
+<div class="screen" id="s12">
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" style="width:78%"></div></div>
+    <div class="progress-label">12 / 14</div>
+  </div>
+
+  <div class="q-label">Tu Protocolo Personal</div>
+  <h2 class="q-title">Las 3 terapias exactas para tu perfil energético</h2>
+  <p class="q-sub" id="sol-sub">Específicas para tu bloqueo y tu signo</p>
+
+  <div class="ornament">✦ ✦ ✦</div>
+
+  <div class="solution-card">
+    <span class="solution-icon">🌿</span>
+    <div class="solution-title">Infusión Ancestral de Hierbas</div>
+    <div class="solution-sub">Protocolo específico para el Chakra del Corazón bloqueado</div>
+    <div class="solution-preview">
+      <div class="solution-preview-blur">Valeriana + Pasiflora + Rosa Mosqueta + cristal de cuarzo rosa programado al 432Hz...</div>
+      <div class="solution-lock">🔒 Desbloquear receta completa</div>
+    </div>
+  </div>
+
+  <div class="solution-card">
+    <span class="solution-icon">💎</span>
+    <div class="solution-title" id="sol-crystal-title">Protocolo de Cristales para tu Signo</div>
+    <div class="solution-sub" id="sol-crystal-sub">Combinación específica calibrada a tu frecuencia vibracional</div>
+    <div class="solution-preview">
+      <div class="solution-preview-blur">Amatista + Cuarzo rosa + Obsidiana negra — ritual de 9 segundos antes de dormir...</div>
+      <div class="solution-lock">🔒 Ver protocolo completo</div>
+    </div>
+  </div>
+
+  <div class="solution-card">
+    <span class="solution-icon">🌙</span>
+    <div class="solution-title">Tu Próxima Ventana Lunar</div>
+    <div class="solution-sub">La fecha exacta para máxima absorción energética</div>
+    <div class="solution-preview">
+      <div class="solution-preview-blur" id="lunar-date">Próxima luna favorable: ████████ — Ritual de apertura de chakras con incienso de...</div>
+      <div class="solution-lock">🔒 Ver fecha y ritual completo</div>
+    </div>
+  </div>
+
+  <button class="btn-primary" onclick="goTo(13)">
+    Quiero mi Protocolo Completo →
+  </button>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 13 — TRANSFORMAÇÃO
+════════════════════════════════════════════ -->
+<div class="screen" id="s13">
+  <div class="q-label">Tu Transformación</div>
+  <h2 class="q-title">Así se verá tu vida en 30 días siguiendo tu protocolo</h2>
+
+  <div class="ornament">✦ ✦ ✦</div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot-wrap">
+        <div class="timeline-dot">🌱</div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-day">DÍA 1</div>
+        <div class="timeline-text">El nudo en tu pecho comienza a ceder. Tu respiración se hace más profunda por primera vez en meses.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot-wrap">
+        <div class="timeline-dot">🌙</div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-day">DÍA 3</div>
+        <div class="timeline-text">Duermes 6 horas seguidas sin despertarte con pánico. Tu sistema nervioso empieza a regularse.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot-wrap">
+        <div class="timeline-dot">☀️</div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-day">DÍA 7</div>
+        <div class="timeline-text">Tu energía matutina regresa. Te despiertas antes de que suene el despertador, con ganas de comenzar el día.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot-wrap">
+        <div class="timeline-dot">✨</div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-day">DÍA 14</div>
+        <div class="timeline-text">Las personas de tu entorno notan tu cambio. Tu claridad mental y tu presencia se intensifican.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot-wrap">
+        <div class="timeline-dot">🔮</div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-day">DÍA 30</div>
+        <div class="timeline-text">Tu campo áurico está completamente renovado. Eres la versión de ti que recordabas — libre, liviana y en flujo.</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-primary" onclick="goTo(14)">
+    Ver Testimonios de Mujeres como Tú →
+  </button>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 14 — DEPOIMENTOS
+════════════════════════════════════════════ -->
+<div class="screen" id="s14">
+  <div class="q-label">Ellas Ya lo Comprobaron</div>
+  <h2 class="q-title">Mujeres con tu mismo perfil energético</h2>
+  <p class="q-sub" id="test-sub">Con el mismo bloqueo que tú — antes y después</p>
+
+  <div class="ornament">✦ ✦ ✦</div>
+
+  <div id="testimonials-wrap">
+    <div class="testimonial">
+      <div class="testimonial-header">
+        <div class="testimonial-avatar">🌸</div>
+        <div class="testimonial-info">
+          <div class="testimonial-name">Carmen R.</div>
+          <div class="testimonial-meta" id="t1-meta">49 años • México • Escorpio</div>
+        </div>
+        <div class="testimonial-stars">★★★★★</div>
+      </div>
+      <p class="testimonial-text">"Llevaba 3 años con ese nudo en el pecho que el médico llamaba 'solo ansiedad'. En 8 días con las infusiones y el protocolo de cristales, desapareció. Dormí de corrido por primera vez en años."</p>
+      <div class="testimonial-highlight">✦ Chakra del Corazón liberado en 8 días</div>
+    </div>
+
+    <div class="testimonial">
+      <div class="testimonial-header">
+        <div class="testimonial-avatar">💜</div>
+        <div class="testimonial-info">
+          <div class="testimonial-name">Rosa M.</div>
+          <div class="testimonial-meta" id="t2-meta">52 años • Colombia • Escorpio</div>
+        </div>
+        <div class="testimonial-stars">★★★★★</div>
+      </div>
+      <p class="testimonial-text">"Yo ya no creía en nada. Había probado de todo. Pero las recetas de hierbas específicas para mi bloqueo fueron diferentes. Mi familia me pregunta qué hice porque me ven otra persona."</p>
+      <div class="testimonial-highlight">✦ Energía renovada desde la semana 1</div>
+    </div>
+
+    <div class="testimonial">
+      <div class="testimonial-header">
+        <div class="testimonial-avatar">🌙</div>
+        <div class="testimonial-info">
+          <div class="testimonial-name">María L.</div>
+          <div class="testimonial-meta" id="t3-meta">46 años • Argentina • Escorpio</div>
+        </div>
+        <div class="testimonial-stars">★★★★★</div>
+      </div>
+      <p class="testimonial-text">"Lo que más me sorprendió fue lo específico que es. No es una guía genérica — cada receta está pensada para el tipo exacto de bloqueo que tenía. En 30 días me siento libre."</p>
+      <div class="testimonial-highlight">✦ Transformación completa en 30 días</div>
+    </div>
+  </div>
+
+  <div class="section-divider"><span>La solución que encontraron</span></div>
+
+  <button class="btn-primary" onclick="goTo(15)">
+    Quiero Esta Transformación →
+  </button>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 15 — OFERTA FINAL
+════════════════════════════════════════════ -->
+<div class="screen" id="s15">
+  <div style="text-align:center;margin-bottom:20px;">
+    <div class="logo-symbol" style="font-size:36px;">✦</div>
+    <div style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:var(--electric);margin-top:6px;">TU GUÍA ESTÁ LISTA</div>
+  </div>
+
+  <div class="offer-box">
+    <div class="offer-title" id="offer-title">Tu Guía fue preparada para tu perfil</div>
+    <p class="offer-sub" id="offer-sub">Con las recetas exactas para tus 3 bloqueos detectados</p>
+
+    <div class="offer-items">
+      <div class="offer-item">
+        <span class="offer-item-check">✓</span>
+        <div class="offer-item-text">
+          <strong>Guía Completa de Autocuración Energética</strong><br>
+          <span class="offer-item-highlight" id="pages-highlight">→ Páginas 23, 47 y 89 son exactamente para tu bloqueo</span>
+        </div>
+      </div>
+      <div class="offer-item">
+        <span class="offer-item-check">✓</span>
+        <div class="offer-item-text">
+          <strong>100+ Recetas con Cristales, Tés y Hierbas</strong><br>
+          <span class="offer-item-highlight">Catalogadas por tipo de bloqueo y chakra</span>
+        </div>
+      </div>
+      <div class="offer-item">
+        <span class="offer-item-check">✓</span>
+        <div class="offer-item-text">
+          <strong id="crystal-bonus">Protocolo de Cristales para tu Signo</strong><br>
+          <span class="offer-item-highlight" id="crystal-bonus-sub">Combinación específica para tu frecuencia</span>
+        </div>
+      </div>
+      <div class="offer-item">
+        <span class="offer-item-check">✓</span>
+        <div class="offer-item-text">
+          <strong>Calendario Lunar Personalizado</strong><br>
+          <span class="offer-item-highlight">Con tus fechas de máxima sanación calculadas</span>
+        </div>
+      </div>
+      <div class="offer-item">
+        <span class="offer-item-check">✓</span>
+        <div class="offer-item-text">
+          <strong>Lectura Numerológica Cabalística</strong><br>
+          <span class="offer-item-highlight" id="num-bonus">Basada en tu número vibracional</span>
+        </div>
+      </div>
+      <div class="offer-item">
+        <span class="offer-item-check">✓</span>
+        <div class="offer-item-text">
+          <strong>Planner de Autocuidado Semanal</strong><br>
+          <span class="offer-item-highlight">Para implementar tu protocolo día a día</span>
+        </div>
+      </div>
+      <div class="offer-item">
+        <span class="offer-item-check">✓</span>
+        <div class="offer-item-text">
+          <strong>Soporte Individual por WhatsApp</strong><br>
+          <span class="offer-item-highlight">Acompañamiento personalizado en tu proceso</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="price-wrap">
+      <div class="price-old">Valor total: $97.00 USD</div>
+      <div class="price-new">
+        <span class="price-currency">$</span>12
+      </div>
+      <div class="price-period">USD • Pago único • Acceso inmediato</div>
+    </div>
+
+    <div class="urgency-bar">
+      <div class="urgency-dot"></div>
+      <div class="urgency-text">
+        <span class="urgency-count" id="urgency-count">23</span> mujeres de tu región están accediendo ahora mismo
+      </div>
+    </div>
+
+    <a href="https://pay.hotmart.com/G104737587O?checkoutMode=10" 
+       onclick="trackPurchase()" 
+       style="text-decoration:none;display:block;">
+      <button class="btn-primary" style="margin-top:0;">
+        ✦ QUIERO MI GUÍA PERSONALIZADA ✦
+      </button>
+    </a>
+
+    <div class="guarantee">
+      <span class="guarantee-icon">🛡️</span>
+      <div class="guarantee-text">
+        <div class="guarantee-title">GARANTÍA BLINDADA DE 7 DÍAS</div>
+        Si no sientes alivio en 7 días, te devolvemos cada centavo. Sin preguntas, sin burocracia.
+      </div>
+    </div>
+
+    <div class="secure-badges">
+      <div class="badge">🔒 Pago seguro</div>
+      <div class="badge">⚡ Acceso en 2 min</div>
+      <div class="badge">💳 Todas las tarjetas</div>
+    </div>
+  </div>
+
+  <p style="text-align:center;font-size:12px;color:rgba(199,125,255,0.4);line-height:1.6;margin-top:8px;">
+    La medicina energética es una práctica complementaria. Los resultados pueden variar. Garantía de devolución de 7 días sin preguntas.
+  </p>
+</div>
+
+</div><!-- /app -->
+
+<script>
+// ── STATE ──────────────────────────────────────
+const state = {
+  name: '', sign: '', signSymbol: '', signName: '',
+  vibration: 0, answers: {}
+};
+
+// ── STARFIELD ──────────────────────────────────
+(function(){
+  const c = document.getElementById('stars');
+  if(!c) return;
+  // Reduced stars for mobile performance
+  const starCount = window.innerWidth < 768 ? 50 : 80;
+  const frag = document.createDocumentFragment();
+  for(let i=0;i<starCount;i++){
+    const s = document.createElement('div');
+    s.className='star';
+    const sz = Math.random()*2+0.5;
+    s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*4}s;--min:${0.1+Math.random()*0.3};animation-delay:${Math.random()*4}s`;
+    frag.appendChild(s);
+  }
+  c.appendChild(frag);
+})();
+
+// ── NAVIGATION ─────────────────────────────────
+function goTo(n){
+  const screens = document.querySelectorAll('.screen');
+  const next = document.getElementById('s'+n);
+  if(!next) return;
+  
+  // Use requestAnimationFrame for smooth transitions
+  requestAnimationFrame(()=>{
+    screens.forEach(s=>s.classList.remove('active'));
+    next.classList.add('active');
+    next.style.opacity=0;
+    requestAnimationFrame(()=>{ 
+      next.style.opacity='';
+      // Smooth scroll with fallback
+      if('scrollBehavior' in document.documentElement.style) {
+        window.scrollTo({top:0,behavior:'smooth'});
+      } else {
+        window.scrollTo(0,0);
+      }
+    });
+  });
+
+  // Fire pixel events
+  if(n===11) { fbq('track','ViewContent',{content_name:'Diagnostico_Resultado'}); runMeter(); }
+  if(n===10) { runAnalysis(); }
+  if(n===15) { fbq('track','InitiateCheckout'); populateOffer(); }
+  if(n===14) { populateTestimonials(); }
+  if(n===12) { populateSolutions(); }
+  if(n===11) { populateResult(); }
+}
+
+// ── OPTION SELECT ──────────────────────────────
+function selectOpt(el, key, val){
+  el.closest('.options').querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  state.answers[key] = val;
+  setTimeout(()=>goTo(+el.closest('.screen').id.replace('s','')+1), 350);
+}
+
+// ── SIGN SELECT ────────────────────────────────
+function selectSign(el, key, sym, name){
+  document.querySelectorAll('.sign-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  state.sign=key; state.signSymbol=sym; state.signName=name;
+  setTimeout(()=>goTo(8), 300);
+}
+
+// ── VIBRATION CALC ─────────────────────────────
+function calcVibration(){
+  const val = document.getElementById('birthdate').value;
+  if(!val) return;
+  const digits = val.replace(/-/g,'').split('').map(Number);
+  let sum = digits.reduce((a,b)=>a+b,0);
+  while(sum>9 && sum!==11 && sum!==22 && sum!==33) {
+    sum = sum.toString().split('').map(Number).reduce((a,b)=>a+b,0);
+  }
+  state.vibration = sum;
+  const msgs = {
+    1:'Número del liderazgo — tu bloqueo está relacionado con el miedo a avanzar',
+    2:'Número de la sensibilidad — absorbes energías ajenas como una esponja',
+    3:'Número de la expresión — emociones reprimidas crean bloqueos físicos',
+    4:'Número de la estabilidad — la inseguridad drena tu campo magnético',
+    5:'Número del cambio — la resistencia al flujo está bloqueando tu energía',
+    6:'Número del cuidado — das tanto que no te queda energía para ti misma',
+    7:'Número espiritual — desconexión entre mente y cuerpo crea tensiones',
+    8:'Número del poder — el miedo al éxito bloquea tu prosperidad energética',
+    9:'Número de la compasión — cargas emociones ajenas en tu propio cuerpo',
+    11:'Número maestro — alta sensibilidad espiritual con vulnerabilidad extrema',
+    22:'Número maestro — energía poderosa que necesita canalizarse correctamente',
+    33:'Número maestro — sanadora nata que se olvida de sanarse a sí misma'
+  };
+  document.getElementById('vibration-num').textContent = sum;
+  document.getElementById('vibration-msg').textContent = msgs[sum]||'Número único de alta vibración';
+  document.getElementById('vibration-preview').style.display='block';
+  const btn = document.getElementById('btn-birth');
+  btn.style.opacity='1'; btn.style.pointerEvents='auto';
+}
+
+// ── NAME CHECK ─────────────────────────────────
+function checkName(){
+  const v = document.getElementById('username').value.trim();
+  state.name = v.charAt(0).toUpperCase()+v.slice(1);
+  const btn = document.getElementById('btn-name');
+  if(v.length>=2){
+    btn.style.opacity='1'; btn.style.pointerEvents='auto';
+    btn.textContent = `Ver diagnóstico de ${state.name} →`;
+  } else {
+    btn.style.opacity='0.4'; btn.style.pointerEvents='none';
+    btn.textContent = 'Ver mi diagnóstico →';
+  }
+}
+
+// ── ANALYSIS ANIMATION ─────────────────────────
+function runAnalysis(){
+  const steps = [
+    'Analizando tu perfil energético...',
+    'Calculando número vibracional '+state.vibration+'...',
+    'Identificando bloqueos por signo '+state.signName+'...',
+    'Cruzando síntomas con 8.247 perfiles...',
+    'Detectando chakras comprometidos...',
+    'Preparando diagnóstico personal...',
+    state.name ? `${state.name}, tu diagnóstico está listo ✦` : 'Tu diagnóstico está listo ✦'
+  ];
+  const bar = document.getElementById('analysis-bar');
+  const pct = document.getElementById('analysis-pct');
+  const step = document.getElementById('analysis-step');
+  let i=0, p=0;
+  const tick = setInterval(()=>{
+    p = Math.min(p+14, 100);
+    bar.style.width = p+'%';
+    pct.textContent = p+'%';
+    if(i<steps.length) { step.textContent=steps[i]; i++; }
+    if(p>=100){ clearInterval(tick); setTimeout(()=>goTo(11), 600); }
+  }, 350);
+}
+
+// ── METER ANIMATION ────────────────────────────
+function runMeter(){
+  setTimeout(()=>{
+    const pct = 78 + Math.floor(Math.random()*14);
+    document.getElementById('meter-bar').style.width=pct+'%';
+    document.getElementById('meter-value').textContent=pct+'% — NIVEL CRÍTICO';
+  }, 400);
+}
+
+// ── POPULATE RESULT ────────────────────────────
+const signMessages = {
+  aries:     {sym:'♈',msg:'Como Aries, la energía reprimida se acumula con violencia en tu chakra del plexo solar. Tu impaciencia ante los obstáculos crea inflamaciones energéticas que se manifiestan físicamente.'},
+  tauro:     {sym:'♉',msg:'Como Tauro, llevas años acumulando tensiones que no expresas. Tu cuerpo guarda todo lo que no dijiste. Esta densidad energética es exactamente lo que está bloqueando tu flujo vital.'},
+  geminis:   {sym:'♊',msg:'Como Géminis, la dualidad constante en tu mente crea un conflicto energético que drena tu sistema nervioso. Tu chakra de la garganta está especialmente vulnerable.'},
+  cancer:    {sym:'♋',msg:'Como Cáncer, absorbes las emociones de todos los que te rodean. Tu chakra cardíaco está sobrecargado de energía ajena, lo que crea ese nudo físico en el pecho que no tiene explicación médica.'},
+  leo:       {sym:'♌',msg:'Como Leo, cuando tu energía vital está bloqueada, tu cuerpo lo grita con agotamiento extremo. Tu chakra del corazón necesita liberarse de la carga de ser siempre la fuerte.'},
+  virgo:     {sym:'♍',msg:'Como Virgo, el perfeccionismo crónico crea tensiones físicas en cuello, hombros y sistema digestivo. Tu cuerpo está pagando el precio de una mente que nunca descansa.'},
+  libra:     {sym:'♎',msg:'Como Libra, el desequilibrio energético que sientes se debe a años intentando complacer a todos. Tu campo áurico está drenado por energía que das sin recibir.'},
+  escorpio:  {sym:'♏',msg:'Como Escorpio, tu intensidad emocional crea bloqueos profundos que pocos comprenden. Las energías que absorbes y transformas se acumulan como toxinas en tu campo vibracional.'},
+  sagitario: {sym:'♐',msg:'Como Sagitario, la restricción de tu libertad energética crea tensiones físicas explosivas. Tu sistema nervioso está en alerta constante, drenando tu vitalidad.'},
+  capricornio:{sym:'♑',msg:'Como Capricornio, años de cargar con responsabilidades sin soltar el control han densificado tu campo energético. Tu cuerpo está literalmente soportando el peso de todo.'},
+  acuario:   {sym:'♒',msg:'Como Acuario, tu alta sensibilidad a las energías colectivas te afecta más de lo que percibes conscientemente. Tu sistema energético está sobreestimulado y necesita reset urgente.'},
+  piscis:    {sym:'♓',msg:'Como Piscis, tienes la capacidad de absorber el dolor ajeno en tu propio cuerpo. Lo que sientes físicamente es una mezcla de tu energía y la de quienes te rodean.'}
+};
+
+function populateResult(){
+  const n = state.name||'Tu diagnóstico';
+  document.getElementById('r-name-badge').textContent = state.name ? `${state.name} — Tu Diagnóstico Personalizado` : 'Tu Diagnóstico Personalizado';
+  const sm = signMessages[state.sign]||signMessages['cancer'];
+  document.getElementById('sign-symbol-r').textContent = sm.sym||state.signSymbol;
+  document.getElementById('sign-name-r').textContent = `Mensaje para ${state.signName||'tu signo'}`;
+  document.getElementById('sign-text-r').textContent = sm.msg;
+}
+
+function populateSolutions(){
+  document.getElementById('sol-sub').textContent = `Específicas para tu bloqueo — ${state.signName||'tu signo'}`;
+  document.getElementById('sol-crystal-title').textContent = `Protocolo de Cristales para ${state.signName||'tu signo'}`;
+}
+
+function populateTestimonials(){
+  const sn = state.signName||'Escorpio';
+  ['t1-meta','t2-meta','t3-meta'].forEach((id,i)=>{
+    const ages=['49','52','46'][i], countries=['México','Colombia','Argentina'][i];
+    document.getElementById(id).textContent=`${ages} años • ${countries} • ${sn}`;
+  });
+  document.getElementById('test-sub').textContent=`Con el mismo bloqueo y el mismo signo — ${sn}`;
+}
+
+function populateOffer(){
+  const n = state.name||'tú';
+  document.getElementById('offer-title').textContent=`${state.name ? state.name+', tu' : 'Tu'} Guía fue preparada para tu perfil`;
+  document.getElementById('crystal-bonus').textContent=`Protocolo de Cristales para ${state.signName||'tu signo'}`;
+  if(state.vibration) document.getElementById('num-bonus').textContent=`Basada en tu número vibracional ${state.vibration}`;
+  // Random urgency 
+  document.getElementById('urgency-count').textContent = 18+Math.floor(Math.random()*15);
+}
+
+// ── PIXEL EVENTS ───────────────────────────────
+function trackPurchase(){
+  fbq('track','AddToCart',{value:12,currency:'USD',content_name:'Guia_Autocuracion'});
+}
+
+// ── INIT ───────────────────────────────────────
+// Optimized initialization
+(function init(){
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+    return;
+  }
+  // Defer pixel tracking
+  if(typeof fbq === 'function'){
+    setTimeout(()=>fbq('track','PageView'), 100);
+  }
+})();
+</script>
+</body>
+</html>
