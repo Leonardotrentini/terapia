@@ -1,0 +1,11 @@
+{
+  "name": "quizzterapia",
+  "version": "1.0.0",
+  "description": "Teste Energético - Otimizado para mobile",
+  "scripts": {
+    "dev": "npx serve ."
+  },
+  "keywords": ["quiz", "energetico", "mobile"],
+  "author": "",
+  "license": "MIT"
+}
