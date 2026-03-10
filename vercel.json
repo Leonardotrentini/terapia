@@ -2,18 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "quizzindex.html",
+      "src": "index.html",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/",
-      "dest": "/quizzindex.html"
-    },
-    {
-      "src": "/index.html",
-      "dest": "/quizzindex.html"
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ],
   "headers": [
