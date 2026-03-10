@@ -623,9 +623,19 @@ html, body {
 .testimonial-avatar {
   width: 44px; height: 44px; border-radius: 50%;
   background: linear-gradient(135deg, var(--purple), var(--magenta));
-  display: flex; align-items: center; justify-content: center;
+  display: block;
   font-size: 18px; flex-shrink: 0;
   box-shadow: 0 0 12px rgba(157,78,221,0.4);
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid rgba(157,78,221,0.5);
+  position: relative;
+}
+.testimonial-avatar img {
+  width: 100%; height: 100%; object-fit: cover;
+  border-radius: 50%;
+  display: block;
 }
 .testimonial-info { flex: 1; }
 .testimonial-name { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; color: var(--white); }
@@ -1351,7 +1361,9 @@ html, body {
   <div id="testimonials-wrap">
     <div class="testimonial">
       <div class="testimonial-header">
-        <div class="testimonial-avatar">🌸</div>
+        <div class="testimonial-avatar">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces" alt="Carmen R." loading="lazy">
+        </div>
         <div class="testimonial-info">
           <div class="testimonial-name">Carmen R.</div>
           <div class="testimonial-meta" id="t1-meta">49 años • México • Escorpio</div>
@@ -1364,7 +1376,9 @@ html, body {
 
     <div class="testimonial">
       <div class="testimonial-header">
-        <div class="testimonial-avatar">💜</div>
+        <div class="testimonial-avatar">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=faces" alt="Rosa M." loading="lazy">
+        </div>
         <div class="testimonial-info">
           <div class="testimonial-name">Rosa M.</div>
           <div class="testimonial-meta" id="t2-meta">52 años • Colombia • Escorpio</div>
@@ -1377,7 +1391,9 @@ html, body {
 
     <div class="testimonial">
       <div class="testimonial-header">
-        <div class="testimonial-avatar">🌙</div>
+        <div class="testimonial-avatar">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=faces" alt="María L." loading="lazy">
+        </div>
         <div class="testimonial-info">
           <div class="testimonial-name">María L.</div>
           <div class="testimonial-meta" id="t3-meta">46 años • Argentina • Escorpio</div>
